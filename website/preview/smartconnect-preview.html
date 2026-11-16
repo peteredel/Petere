@@ -1,0 +1,438 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Smartconnect — Slimmer verbonden met je klant</title>
+  <meta name="description" content="Smartconnect ontwikkelt Smartcall: een cloudplatform dat elk klantcontact verrijkt met context en het meteen naar de juiste medewerker stuurt.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+:root {
+  --ink: #0b1630;
+  --ink-2: #44506b;
+  --muted: #7a859c;
+  --bg: #ffffff;
+  --soft: #f3f6fb;
+  --line: #e3e8f1;
+  --brand: #1747d6;
+  --brand-2: #00c2a8;
+  --dark: #0a1328;
+  --radius: 18px;
+  --shadow: 0 20px 50px -20px rgba(11, 22, 48, .25);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+body {
+  font-family: Inter, system-ui, -apple-system, Segoe UI, sans-serif;
+  color: var(--ink);
+  background: var(--bg);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; text-decoration: none; }
+ul, ol { list-style: none; }
+.wrap { width: min(1120px, 100% - 32px); margin-inline: auto; }
+
+h1, h2, h3 { line-height: 1.15; letter-spacing: -.02em; }
+h1 { font-size: clamp(2.4rem, 5vw, 3.8rem); font-weight: 800; }
+h2 { font-size: clamp(1.8rem, 3.2vw, 2.6rem); font-weight: 700; margin-bottom: 16px; }
+h3 { font-size: 1.15rem; font-weight: 600; margin-bottom: 8px; }
+p { color: var(--ink-2); }
+.accent {
+  background: linear-gradient(90deg, var(--brand), var(--brand-2));
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.eyebrow {
+  font-size: .8rem; font-weight: 600; text-transform: uppercase; letter-spacing: .12em;
+  color: var(--brand); margin-bottom: 14px;
+}
+.lead { font-size: 1.15rem; margin: 22px 0 32px; max-width: 34em; }
+
+/* Buttons */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  background: var(--brand); color: #fff; font-weight: 600;
+  padding: 14px 24px; border-radius: 999px; border: 0; cursor: pointer;
+  font: inherit; font-weight: 600;
+  transition: transform .15s, box-shadow .15s, background .15s;
+  box-shadow: 0 8px 20px -8px rgba(23, 71, 214, .6);
+}
+.btn:hover { transform: translateY(-1px); background: #123bb5; }
+.btn--ghost { background: transparent; color: var(--ink); box-shadow: none; padding-inline: 8px; }
+.btn--ghost:hover { background: transparent; color: var(--brand); }
+.btn--small { padding: 9px 18px; font-size: .92rem; }
+
+/* Nav */
+.nav {
+  position: sticky; top: 0; z-index: 50;
+  background: rgba(255, 255, 255, .85); backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--line);
+}
+.nav__inner { display: flex; align-items: center; justify-content: space-between; height: 68px; }
+.logo { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 1.2rem; letter-spacing: -.03em; }
+.logo__mark {
+  width: 26px; height: 26px; border-radius: 8px;
+  background: linear-gradient(135deg, var(--brand), var(--brand-2));
+  position: relative;
+}
+.logo__mark::after {
+  content: ""; position: absolute; inset: 7px; border-radius: 50%; border: 3px solid #fff;
+}
+.nav__links { display: flex; align-items: center; gap: 30px; font-weight: 500; font-size: .95rem; }
+.nav__links a:not(.btn):hover { color: var(--brand); }
+.nav__toggle { display: none; background: none; border: 0; cursor: pointer; padding: 8px; }
+.nav__toggle span { display: block; width: 22px; height: 2px; background: var(--ink); margin: 5px 0; border-radius: 2px; }
+
+/* Hero */
+.hero {
+  padding: 90px 0 100px;
+  background:
+    radial-gradient(600px 400px at 85% 20%, rgba(0, 194, 168, .12), transparent 70%),
+    radial-gradient(700px 500px at 70% 80%, rgba(23, 71, 214, .10), transparent 70%);
+}
+.hero__grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: 60px; align-items: center; }
+.hero__cta { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+.hero__visual { position: relative; min-height: 380px; }
+
+.card {
+  background: #fff; border: 1px solid var(--line); border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+.card--call { padding: 24px; position: relative; z-index: 2; margin: 40px 20px 0 30px; }
+.card__row { display: flex; align-items: center; gap: 14px; }
+.card__row small { display: block; color: var(--muted); }
+.avatar {
+  width: 46px; height: 46px; border-radius: 50%; display: grid; place-items: center;
+  background: var(--soft); color: var(--brand); font-weight: 700;
+}
+.pill { margin-left: auto; font-size: .75rem; font-weight: 600; padding: 4px 10px; border-radius: 999px; }
+.pill--live { background: rgba(0, 194, 168, .15); color: #008f7c; }
+.tags { display: flex; flex-wrap: wrap; gap: 8px; margin: 20px 0; }
+.tags li { font-size: .85rem; background: var(--soft); padding: 6px 12px; border-radius: 999px; color: var(--ink-2); }
+.route {
+  display: flex; justify-content: space-between; align-items: center; gap: 12px;
+  padding: 14px 16px; border-radius: 12px;
+  background: linear-gradient(90deg, var(--brand), #2f63f0); color: #fff; font-size: .9rem;
+}
+.route span { opacity: .8; }
+.card--mini {
+  position: absolute; padding: 12px 16px; font-size: .88rem; font-weight: 600;
+  display: flex; align-items: center; gap: 10px; z-index: 3;
+}
+.card--a { top: 0; right: 0; }
+.card--b { bottom: 10px; left: 0; }
+.dot { width: 9px; height: 9px; border-radius: 50%; background: #25d366; }
+.dot--b { background: var(--brand-2); }
+
+/* Strip */
+.strip { border-block: 1px solid var(--line); background: var(--soft); }
+.strip__inner { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; padding: 28px 0; }
+.strip strong { display: block; font-size: 1.05rem; }
+.strip span { font-size: .9rem; color: var(--muted); }
+
+/* Sections */
+.section { padding: 110px 0; }
+.section--soft { background: var(--soft); }
+.section--dark { background: var(--dark); color: #fff; }
+.section--dark p { color: #a9b3c9; }
+.section--dark .eyebrow { color: var(--brand-2); }
+.section__head { max-width: 640px; margin-bottom: 56px; }
+
+/* Features */
+.features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.feature {
+  padding: 32px; border: 1px solid var(--line); border-radius: var(--radius);
+  transition: transform .2s, box-shadow .2s, border-color .2s;
+}
+.feature:hover { transform: translateY(-4px); box-shadow: var(--shadow); border-color: transparent; }
+.feature__icon {
+  width: 48px; height: 48px; border-radius: 14px; display: grid; place-items: center;
+  font-size: 1.4rem; color: var(--brand); background: rgba(23, 71, 214, .08); margin-bottom: 20px;
+}
+
+/* Channels */
+.channels { display: grid; grid-template-columns: repeat(6, 1fr); gap: 16px; }
+.channels li {
+  display: flex; flex-direction: column; align-items: center; gap: 12px; text-align: center;
+  padding: 28px 12px; border-radius: var(--radius); font-size: 1.8rem;
+  background: rgba(255, 255, 255, .04); border: 1px solid rgba(255, 255, 255, .08);
+  transition: background .2s;
+}
+.channels li:hover { background: rgba(255, 255, 255, .08); }
+.channels span { font-size: .92rem; font-weight: 500; color: #dfe5f2; }
+
+/* Steps */
+.steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; counter-reset: s; }
+.steps li { position: relative; padding-top: 28px; border-top: 2px solid var(--line); }
+.steps li:first-child { border-color: var(--brand); }
+.steps__n { display: block; font-size: .85rem; font-weight: 700; color: var(--brand); margin-bottom: 12px; }
+
+/* Sectors */
+.sectors { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+.sectors > div p { margin-bottom: 28px; }
+.sectors__list { display: grid; gap: 14px; }
+.sectors__list li {
+  background: #fff; border-radius: 14px; padding: 20px 24px; border: 1px solid var(--line);
+}
+.sectors__list strong { display: block; }
+.sectors__list span { color: var(--muted); font-size: .95rem; }
+
+/* Contact */
+.contact { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; }
+.contact__info { display: grid; grid-template-columns: max-content 1fr; gap: 10px 24px; margin-top: 32px; }
+.contact__info dt { font-weight: 600; font-size: .9rem; }
+.contact__info dd { color: var(--ink-2); }
+.contact__info a { color: var(--brand); }
+.form {
+  display: grid; gap: 16px; padding: 32px; border-radius: var(--radius);
+  border: 1px solid var(--line); box-shadow: var(--shadow);
+}
+.form label { display: grid; gap: 6px; font-size: .88rem; font-weight: 600; }
+.form input, .form textarea {
+  font: inherit; font-weight: 400; padding: 12px 14px; border-radius: 10px;
+  border: 1px solid var(--line); background: var(--soft); color: var(--ink);
+  transition: border-color .15s, background .15s;
+}
+.form input:focus, .form textarea:focus { outline: none; border-color: var(--brand); background: #fff; }
+
+/* Footer */
+.footer { border-top: 1px solid var(--line); padding: 32px 0; }
+.footer__inner { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; }
+.footer p { font-size: .9rem; color: var(--muted); }
+
+/* Responsive */
+@media (max-width: 960px) {
+  .hero__grid, .sectors, .contact { grid-template-columns: 1fr; gap: 48px; }
+  .features, .steps { grid-template-columns: 1fr; }
+  .channels { grid-template-columns: repeat(3, 1fr); }
+  .strip__inner { grid-template-columns: repeat(2, 1fr); }
+  .section { padding: 80px 0; }
+  .hero { padding: 60px 0 80px; }
+}
+@media (max-width: 760px) {
+  .nav__toggle { display: block; }
+  .nav__links {
+    position: absolute; top: 68px; left: 0; right: 0; flex-direction: column; gap: 4px;
+    background: #fff; border-bottom: 1px solid var(--line); padding: 12px 16px 20px;
+    display: none; align-items: stretch;
+  }
+  .nav__links.open { display: flex; }
+  .nav__links a { padding: 10px 4px; }
+  .nav__links .btn { margin-top: 8px; }
+  .channels { grid-template-columns: repeat(2, 1fr); }
+  .card--call { margin: 50px 0 0; }
+  .hero__visual { min-height: 0; padding-bottom: 50px; }
+  .route { flex-direction: column; align-items: flex-start; gap: 2px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { transition: none !important; }
+}
+
+</style>
+</head>
+<body>
+
+<header class="nav" id="top">
+  <div class="wrap nav__inner">
+    <a href="#top" class="logo" aria-label="Smartconnect home">
+      <span class="logo__mark" aria-hidden="true"></span>smartconnect
+    </a>
+    <button class="nav__toggle" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span>
+    </button>
+    <nav class="nav__links">
+      <a href="#oplossing">Oplossing</a>
+      <a href="#kanalen">Kanalen</a>
+      <a href="#werkwijze">Werkwijze</a>
+      <a href="#sectoren">Sectoren</a>
+      <a href="#contact" class="btn btn--small">Demo aanvragen</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero__grid">
+      <div>
+        <p class="eyebrow">Smartcall cloudplatform voor contact centers</p>
+        <h1>Elk klantcontact,<br><span class="accent">meteen in context.</span></h1>
+        <p class="lead">Smartcall verrijkt gesprekken, chats en berichten met taal, locatie en identiteit — en stuurt ze direct naar de juiste medewerker. Minder doorverbinden, snellere oplossingen, tevreden klanten.</p>
+        <div class="hero__cta">
+          <a href="#contact" class="btn">Plan een demo</a>
+          <a href="#oplossing" class="btn btn--ghost">Ontdek hoe het werkt →</a>
+        </div>
+      </div>
+
+      <div class="hero__visual" aria-hidden="true">
+        <div class="card card--call">
+          <div class="card__row">
+            <span class="avatar">LV</span>
+            <div>
+              <strong>Inkomend gesprek</strong>
+              <small>via mobiele app</small>
+            </div>
+            <span class="pill pill--live">live</span>
+          </div>
+          <ul class="tags">
+            <li>🇳🇱 Nederlands</li>
+            <li>📍 Leuven</li>
+            <li>✔ Klant geïdentificeerd</li>
+            <li>📄 Factuurvraag</li>
+          </ul>
+          <div class="route">
+            <span>Gerouteerd naar</span>
+            <strong>Team Facturatie · Sarah</strong>
+          </div>
+        </div>
+        <div class="card card--mini card--a"><span class="dot"></span> WhatsApp · 3 wachtend</div>
+        <div class="card card--mini card--b"><span class="dot dot--b"></span> Gem. wachttijd 18s</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LOGO/TRUST STRIP -->
+  <section class="strip">
+    <div class="wrap strip__inner">
+      <div><strong>Cloud</strong><span>geen installatie on-premise</span></div>
+      <div><strong>Omnichannel</strong><span>één platform, alle kanalen</span></div>
+      <div><strong>Integreert</strong><span>met je bestaande contact center</span></div>
+      <div><strong>Belgisch</strong><span>ontwikkeld in Boortmeerbeek</span></div>
+    </div>
+  </section>
+
+  <!-- SOLUTION -->
+  <section class="section" id="oplossing">
+    <div class="wrap">
+      <div class="section__head">
+        <p class="eyebrow">De oplossing</p>
+        <h2>Weet wie er belt — nog vóór je opneemt.</h2>
+        <p>Klassieke keuzemenu's kosten je klant tijd en je team energie. Smartcall vervangt ze door visueel kiezen op de smartphone en voegt automatisch context toe aan elk contact.</p>
+      </div>
+      <div class="features">
+        <article class="feature">
+          <div class="feature__icon">◎</div>
+          <h3>Contextuele routing</h3>
+          <p>Taal, locatie, identiteit en de reden van contact bepalen meteen welke medewerker het gesprek krijgt.</p>
+        </article>
+        <article class="feature">
+          <div class="feature__icon">▦</div>
+          <h3>Visueel kiezen</h3>
+          <p>Geen "druk 1, druk 2" meer: klanten kiezen hun onderwerp in een helder menu op hun smartphone.</p>
+        </article>
+        <article class="feature">
+          <div class="feature__icon">⇄</div>
+          <h3>Naadloze integratie</h3>
+          <p>Smartcall werkt bovenop je bestaande contact center-software en CRM. Geen grote migratie nodig.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- CHANNELS -->
+  <section class="section section--dark" id="kanalen">
+    <div class="wrap">
+      <div class="section__head">
+        <p class="eyebrow">Kanalen</p>
+        <h2>Eén platform voor elk kanaal.</h2>
+        <p>Je klant kiest het kanaal, jouw team krijgt altijd dezelfde rijke context.</p>
+      </div>
+      <ul class="channels">
+        <li>📞<span>Mobiele telefonie</span></li>
+        <li>💬<span>WhatsApp</span></li>
+        <li>🌐<span>Websitechat</span></li>
+        <li>✉️<span>SMS</span></li>
+        <li>👥<span>Facebook Messenger</span></li>
+        <li>🖥️<span>Cobrowse</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="section" id="werkwijze">
+    <div class="wrap">
+      <div class="section__head">
+        <p class="eyebrow">Werkwijze</p>
+        <h2>Van eerste contact tot oplossing in drie stappen.</h2>
+      </div>
+      <ol class="steps">
+        <li>
+          <span class="steps__n">01</span>
+          <h3>Klant neemt contact op</h3>
+          <p>Via app, website, telefoon of berichtendienst — waar je klant ook is.</p>
+        </li>
+        <li>
+          <span class="steps__n">02</span>
+          <h3>Smartcall voegt context toe</h3>
+          <p>Identiteit, taal, locatie en onderwerp worden automatisch meegegeven.</p>
+        </li>
+        <li>
+          <span class="steps__n">03</span>
+          <h3>Juiste medewerker, eerste keer</h3>
+          <p>Het contact komt meteen bij de best geplaatste collega, met alle info op het scherm.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- SECTORS -->
+  <section class="section section--soft" id="sectoren">
+    <div class="wrap sectors">
+      <div>
+        <p class="eyebrow">Voor wie</p>
+        <h2>Gebouwd voor organisaties met veel klantcontact.</h2>
+        <p>Van zorg tot nutsvoorzieningen: overal waar snelle, persoonlijke hulp het verschil maakt.</p>
+        <a href="#contact" class="btn">Bespreek jouw situatie</a>
+      </div>
+      <ul class="sectors__list">
+        <li><strong>Zorg &amp; welzijn</strong><span>Patiënten sneller bij de juiste zorgverlener.</span></li>
+        <li><strong>Energie &amp; utilities</strong><span>Piekmomenten opvangen zonder wachtrijen.</span></li>
+        <li><strong>Financiële diensten</strong><span>Veilig identificeren vóór het gesprek start.</span></li>
+        <li><strong>Overheid</strong><span>Burgers helpen in hun eigen taal.</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="section" id="contact">
+    <div class="wrap contact">
+      <div>
+        <p class="eyebrow">Contact</p>
+        <h2>Benieuwd wat Smartcall voor jouw team kan doen?</h2>
+        <p>Laat je gegevens achter en we plannen een vrijblijvende demo van 30 minuten.</p>
+        <dl class="contact__info">
+          <dt>Adres</dt><dd>Leuvensesteenweg 350<br>3190 Boortmeerbeek, België</dd>
+          <dt>E-mail</dt><dd><a href="mailto:info@smartconnect.eu">info@smartconnect.eu</a></dd>
+          <dt>Ondernemingsnr.</dt><dd>BE 0501.888.589</dd>
+        </dl>
+      </div>
+      <form class="form" action="mailto:info@smartconnect.eu" method="post" enctype="text/plain">
+        <label>Naam<input name="naam" required autocomplete="name"></label>
+        <label>Bedrijf<input name="bedrijf" autocomplete="organization"></label>
+        <label>E-mail<input type="email" name="email" required autocomplete="email"></label>
+        <label>Bericht<textarea name="bericht" rows="4" placeholder="Hoeveel agents, welke kanalen…"></textarea></label>
+        <button class="btn" type="submit">Demo aanvragen</button>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="wrap footer__inner">
+    <a href="#top" class="logo"><span class="logo__mark" aria-hidden="true"></span>smartconnect</a>
+    <p>© <span id="year">2026</span> Smartconnect NV · Boortmeerbeek, België</p>
+  </div>
+</footer>
+
+<script>
+  const t = document.querySelector('.nav__toggle'), n = document.querySelector('.nav__links');
+  t.addEventListener('click', () => { const o = n.classList.toggle('open'); t.setAttribute('aria-expanded', o); });
+  n.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { n.classList.remove('open'); t.setAttribute('aria-expanded', false); }));
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
