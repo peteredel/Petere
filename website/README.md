@@ -4,4 +4,4 @@ Statische one-page website (HTML + CSS, geen build nodig). Open `index.html` in 
 
 Secties: hero · kenmerken · oplossing · kanalen · werkwijze · sectoren · contact.
 
-Controleer vóór livegang: e-mailadres, teksten en eventuele klantlogo's/cijfers.
+Inhoud gebaseerd op de huidige smartconnect.eu (vertaald naar het Nederlands). Controleer klantnamen en teksten vóór livegang.
